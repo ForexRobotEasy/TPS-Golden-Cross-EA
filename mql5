@@ -1,0 +1,97 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                  TPS Golden Cross EA             |
+//|                                  forexroboteasy.com              |
+//|                                  Forex Robot Easy Team            |
+//+------------------------------------------------------------------+
+
+// Define input parameters
+input int ShortTermMA = 20;                 // Short-term moving average period
+input int LongTermMA = 50;                  // Long-term moving average period
+input double LotSize = 0.01;                // Default lot size
+input double StopLoss = 30.0;               // Stop loss level in pips
+input double TrailingStop = 20.0;           // Trailing stop level in pips
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   // Add initialization code here
+   return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+   // Add deinitialization code here
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Detect Golden Cross pattern
+   if (CrossOver(GetMA(ShortTermMA), GetMA(LongTermMA)))
+   {
+      // Execute buy trade
+      ExecuteTrade(OP_BUY);
+   }
+
+   // Add code for detecting sell trades if needed
+}
+
+//+------------------------------------------------------------------+
+//| Execute buy trade                                                 |
+//+------------------------------------------------------------------+
+void ExecuteTrade(int orderType)
+{
+   // Calculate trade size based on lot size
+   double volume = LotsToVolume(LotSize);
+
+   // Place buy order
+   if (orderType == OP_BUY)
+   {
+      double price = Ask;
+      double stopLossPrice = NormalizeDouble(price - StopLoss * Point, Digits);
+
+      // Add code to place buy order here
+      // ...
+      // ...
+   }
+
+   // Add code for executing sell trades if needed
+}
+
+//+------------------------------------------------------------------+
+//| Calculate moving average                                          |
+//+------------------------------------------------------------------+
+double GetMA(int period)
+{
+   // Add code to calculate moving average here
+   // ...
+   // ...
+}
+
+//+------------------------------------------------------------------+
+//| Check if there is a crossover between two moving averages         |
+//+------------------------------------------------------------------+
+bool CrossOver(double ma1, double ma2)
+{
+   // Add code to check for crossover here
+   // ...
+   // ...
+}
+
+//+------------------------------------------------------------------+
+//| Convert lot size to volume                                        |
+//+------------------------------------------------------------------+
+double LotsToVolume(double lots)
+{
+   // Add code to convert lot size to volume here
+   // ...
+   // ...
+}
